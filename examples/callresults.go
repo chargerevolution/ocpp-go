@@ -53,9 +53,11 @@ func Create_callresult_json_string() []byte {
 
 	// All OCPP messages need to be wrapped into a CALL, CALLRESULT or CALLERROR type
 	call_result_wrapper := wrappers.CALLRESULT{
-		MessageTypeId: wrappers.CALLRESULT_TYPE,
-		MessageId:     uuid.NewString(),
-		Payload:       auth_resp,
+		BaseMessage: wrappers.BaseMessage{
+			MessageTypeId: wrappers.CALLRESULT_TYPE,
+			MessageId:     uuid.NewString(),
+		},
+		Payload: auth_resp,
 	}
 
 	return call_result_wrapper.MarshalPretty()

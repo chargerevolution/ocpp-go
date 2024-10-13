@@ -16,3 +16,6 @@
 
 # Go workspace file
 go.work
+
+# go files generated from json schema
+generated

@@ -9,8 +9,13 @@ Data types for
 Run **example.go** to see the types working
 
 ## Re-generate types from schemas (if needed):
+
+(See: https://github.com/omissis/go-jsonschema)
     
-    go install github.com/atombender/go-jsonschema/cmd/gojsonschema@latest
+    go get github.com/atombender/go-jsonschema/...
+
+    go install github.com/atombender/go-jsonschema@latest
+
 
     ./generate.sh
 ## More info

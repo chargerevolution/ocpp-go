@@ -26,19 +26,20 @@ func Run_callerror_unmarshal_example(json_string []byte) {
 		fmt.Println("*******************************")
 		litter.Dump(callerror)
 	}
-
 }
 
 func Create_callerror_json_string() []byte {
-
-	// All OCPP messages need to be wrapped into a CALL, callerror or CALLERROR type
-	call_result_wrapper := wrappers.CALLERROR{
-		MessageTypeId:    wrappers.CALLERROR_TYPE,
-		MessageId:        uuid.NewString(),
+	// Create a CALLERROR instance with the necessary fields
+	callError := wrappers.CALLERROR{
+		BaseMessage: wrappers.BaseMessage{
+			MessageTypeId: wrappers.CALLERROR_TYPE,
+			MessageId:     uuid.NewString(),
+		},
 		ErrorCode:        string(wrappers.FormatViolation),
 		ErrorDescription: "Some really descriptive words about this error",
 		ErrorDetails:     "Don't even bother debugging, just go on stackoverflow :D",
 	}
 
-	return call_result_wrapper.MarshalPretty()
+	// Marshal the CALLERROR into a pretty JSON string
+	return callError.MarshalPretty()
 }

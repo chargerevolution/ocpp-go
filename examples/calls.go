@@ -54,10 +54,12 @@ func Create_call_json_string() []byte {
 
 	// All OCPP messages need to be wrapped into a CALL, CALLRESULT or CALLERROR type
 	call_wrapper := wrappers.CALL{
-		MessageTypeId: wrappers.CALL_TYPE,
-		MessageId:     uuid.NewString(),
-		Action:        "BootNotification",
-		Payload:       boot_req,
+		BaseMessage: wrappers.BaseMessage{
+			MessageTypeId: wrappers.CALL_TYPE,
+			MessageId:     uuid.NewString(),
+		},
+		Action:  "BootNotification",
+		Payload: boot_req,
 	}
 
 	return call_wrapper.MarshalPretty()
